@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Donut-Progress</title>
+    <!-- Google Font "Poppins" -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <!-- DOT-GRID-CANVAS: Background for the pulsing dots -->
+    <canvas id="dot-grid"></canvas>
+
+    <!-- CONTAINER FOR SVG DONUT -->
+    <div class="container">
+        <svg class="donut" viewBox="0 0 400 400">
+            <defs>
+                <!-- Linear gradient for the donut progress -->
+                <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#00D2FF" />
+                    <stop offset="100%" stop-color="#3A7BD5" />
+                </linearGradient>
+                <!-- Glow filter for a luminous edge -->
+                <filter id="glowFilter" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
+                    <feMerge>
+                        <feMergeNode in="blur" />
+                        <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                </filter>
+            </defs>
+
+            <!-- Donut progress circle -->
+            <circle class="donut-progress" cx="200" cy="200" r="160" stroke="url(#blueGradient)"
+                filter="url(#glowFilter)" />
+            <!-- Donut text (the number) -->
+            <text id="donut-value" x="200" y="210" text-anchor="middle" class="donut-text">0</text>
+        </svg>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
