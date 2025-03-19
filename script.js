@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
    * 1) ANIMIERTER DONUT-PROGRESS
    ****************************************************************************/
   // Your values
-  const current = 0; // e.g., 5000
+  const current = 2600; // e.g., 5000
   const goal = 25000; // e.g., 25000
 
   // DOM elements
