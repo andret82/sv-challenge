@@ -104,6 +104,21 @@ document.addEventListener('DOMContentLoaded', () => {
     dotAnimationId = requestAnimationFrame(animateDots);
   }
 
+  /* Remaining Days Counter */
+  function updateRemainingDays() {
+    const targetDate = new Date('2025-06-29T00:00:00');
+    const now = new Date();
+    // Berechne den Unterschied in Millisekunden
+    const timeDiff = targetDate.getTime() - now.getTime();
+    // Umrechnung in Tage, negative Werte vermeiden
+    const daysRemaining = Math.max(0, Math.ceil(timeDiff / (1000 * 60 * 60 * 24)));
+    const remainingDaysEl = document.getElementById('remaining-days');
+    remainingDaysEl.textContent = `Remaining Days: ${daysRemaining}`;
+  }
+
+  // Initial einmal aufrufen
+  updateRemainingDays();
+
   // Handle window resize
   window.addEventListener('resize', () => {
     cancelAnimationFrame(dotAnimationId);

@@ -66,3 +66,13 @@ body {
     font-size: 8rem;
   }
 }
+
+.remaining-days {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 1.5rem;
+  font-family: 'Poppins', sans-serif;
+}
