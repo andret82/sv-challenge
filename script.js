@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
    * 1) ANIMIERTER DONUT-PROGRESS
    ****************************************************************************/
   // Your values
-  const current = 4816; // e.g., 5000
-  const goal = 25000; // e.g., 25000
+  const current = 572; // e.g., 5000
+  const goal = 800; // e.g., 25000
 
   // DOM elements
   const donutValueEl = document.getElementById('donut-value');

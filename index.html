@@ -21,9 +21,9 @@
         <svg class="donut" viewBox="0 0 400 400">
             <defs>
                 <!-- Linear gradient for the donut progress -->
-                <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#00D2FF" />
-                    <stop offset="100%" stop-color="#3A7BD5" />
+                <linearGradient id="pinkGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#FF0080" />
+                    <stop offset="100%" stop-color="#FF69B4" />
                 </linearGradient>
                 <!-- Glow filter for a luminous edge -->
                 <filter id="glowFilter" x="-50%" y="-50%" width="200%" height="200%">
@@ -36,7 +36,7 @@
             </defs>
 
             <!-- Donut progress circle -->
-            <circle class="donut-progress" cx="200" cy="200" r="160" stroke="url(#blueGradient)"
+            <circle class="donut-progress" cx="200" cy="200" r="160" stroke="url(#pinkGradient)"
                 filter="url(#glowFilter)" />
             <!-- Donut text (the number) -->
             <text id="donut-value" x="200" y="210" text-anchor="middle" class="donut-text">0</text>
