@@ -20,6 +20,7 @@ body {
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column; /* ← stack vertically */
   justify-content: center;
   align-items: center;
   position: relative;
@@ -69,10 +70,29 @@ body {
 
 .remaining-days {
   position: absolute;
-  bottom: 20px;
+  bottom: 5px;
   width: 100%;
   text-align: center;
   color: #fff;
   font-size: 1.5rem;
   font-family: 'Poppins', sans-serif;
+}
+
+/* overall SVG text container */
+.donut-text {
+  fill: #fff;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* large but smaller than before */
+.percent-line {
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+/* little caption below */
+.value-line {
+  font-size: 1.5rem;
+  fill: #ccc; /* or whatever accent color */
+  font-weight: 400;
 }

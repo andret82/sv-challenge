@@ -2,55 +2,54 @@ document.addEventListener('DOMContentLoaded', () => {
   /****************************************************************************
    * 1) ANIMIERTER DONUT-PROGRESS
    ****************************************************************************/
-  // Your values
-  const current = 8356; // e.g., 5000
-  const goal = 25000; // e.g., 25000
-
-  // DOM elements
-  const donutValueEl = document.getElementById('donut-value');
-  const donutProgressEl = document.querySelector('.donut-progress');
-
   // Circle circumference: r = 160 => circumference ~ 2π*160 ≈ 1005.31
   // stroke-dasharray is set to 1006 in the CSS
   const CIRCUMFERENCE = 1006;
 
-  // Calculate percentage progress, capped at 100%
-  let percentage = (current / goal) * 100;
-  if (percentage > 100) percentage = 100;
+  // Values for each donut: update these as needed
+  const donutData = [
+    { current: 8356, goal: 25000 }, // blue donut
+    { current: 15, goal: 600 }, // pink donut
+  ];
 
-  // Dash-offset for the final result (0 = full circle, 1006 = empty)
-  const finalOffset = CIRCUMFERENCE - (percentage / 100) * CIRCUMFERENCE;
+  // Function to animate a single donut
+  function animateSingleDonut(progressEl, percentEl, valueEl, current, goal) {
+    const finalPct = Math.min((current / goal) * 100, 100);
+    const finalOffset = CIRCUMFERENCE - (finalPct / 100) * CIRCUMFERENCE;
+    const frames = 120;
+    let frameCount = 0;
+    const startOffset = CIRCUMFERENCE;
+    const startValue = 0;
 
-  // Animation variables
-  const frames = 120; // ~5 seconds at 60 FPS
-  let frameCount = 0;
-  let startOffset = CIRCUMFERENCE; // starting from "empty"
-  let startValue = 0; // starting value for the text
+    function step() {
+      frameCount++;
+      const progress = frameCount / frames;
+      const currOffset = startOffset + (finalOffset - startOffset) * progress;
+      progressEl.style.strokeDashoffset = currOffset;
+      // Update percentage and raw value
+      percentEl.textContent = Math.floor(finalPct * progress) + '%';
+      valueEl.textContent = Math.floor(current * progress) + ' / ' + goal;
 
-  // Donut animation function
-  function animateDonut() {
-    frameCount++;
-    const progress = frameCount / frames;
-
-    // Animate the dash offset from start (1006) to finalOffset
-    const currOffset = startOffset + (finalOffset - startOffset) * progress;
-    donutProgressEl.style.strokeDashoffset = currOffset;
-
-    // Update the text in the center to count up
-    const currValue = Math.floor(startValue + (current - startValue) * progress);
-    donutValueEl.textContent = currValue;
-
-    if (frameCount < frames) {
-      requestAnimationFrame(animateDonut);
-    } else {
-      // Ensure the final values are set cleanly
-      donutProgressEl.style.strokeDashoffset = finalOffset;
-      donutValueEl.textContent = current;
+      if (frameCount < frames) {
+        requestAnimationFrame(step);
+      } else {
+        progressEl.style.strokeDashoffset = finalOffset;
+        percentEl.textContent = Math.floor(finalPct) + '%';
+        valueEl.textContent = current + ' / ' + goal;
+      }
     }
+
+    requestAnimationFrame(step);
   }
 
-  // Start the donut animation immediately (it will now take ~5 seconds)
-  requestAnimationFrame(animateDonut);
+  // Initialize animations for each donut
+  document.querySelectorAll('.donut').forEach((svg, index) => {
+    const { current, goal } = donutData[index] || donutData[0];
+    const percentEl = svg.querySelector('.percent-line');
+    const valueEl = svg.querySelector('.value-line');
+    const progressEl = svg.querySelector('.donut-progress');
+    animateSingleDonut(progressEl, percentEl, valueEl, current, goal);
+  });
 
   /****************************************************************************
    * 2) DOT-GRID-HINTERGRUND (WHITE DOTS) MIT PULSATION
