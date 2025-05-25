@@ -96,3 +96,12 @@ body {
   fill: #ccc; /* or whatever accent color */
   font-weight: 400;
 }
+
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+  }
+  .remaining-days {
+    bottom: 40px;
+  }
+}

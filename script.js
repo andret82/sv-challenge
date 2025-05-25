@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Values for each donut: update these as needed
   const donutData = [
     { current: 8356, goal: 25000 }, // blue donut
-    { current: 25, goal: 600 }, // pink donut
+    { current: 33, goal: 600 }, // pink donut
   ];
 
   // Function to animate a single donut
